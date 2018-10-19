@@ -11,4 +11,5 @@
     <string name="str_mobile">Mobile</string>
     <string name="str_first_name">First Name</string>
     <string name="str_last_name">Last Name</string>
+    <string name="str_signup">Signup</string>
 </resources>

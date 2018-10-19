@@ -1,4 +1,4 @@
-package com.jtanveer.raydar.signup;
+package com.jtanveer.raydar.ui.home;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -11,29 +11,30 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jtanveer.raydar.R;
-import com.jtanveer.raydar.databinding.FragmentSignupBinding;
+import com.jtanveer.raydar.databinding.FragmentHomeBinding;
 
-public class SignupFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
-    private FragmentSignupBinding binding;
+    private FragmentHomeBinding binding;
 
-    private SignupViewModel mViewModel;
+    private HomeViewModel mViewModel;
 
-    public static SignupFragment newInstance() {
-        return new SignupFragment();
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
     }
 
+    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SignupViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         // TODO: Use the ViewModel
     }
 

@@ -3,10 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="model"
+            type="com.jtanveer.raydar.ui.signup.SignupViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".signup.SignupFragment"
+        tools:context=".ui.signup.SignupFragment"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.constraint.ConstraintLayout
@@ -29,7 +35,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/str_email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:text="@={model.signup.fields.email}"
+                    app:error="@{model.signup.emailError}"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -46,8 +54,10 @@
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/str_mobile"
-                    android:inputType="textPassword" />
+                    android:hint="@string/str_password"
+                    android:inputType="textPassword"
+                    android:text="@={model.signup.fields.password}"
+                    app:error="@{model.signup.passwordError}"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -64,8 +74,10 @@
                     android:id="@+id/et_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/str_password"
-                    android:inputType="phone" />
+                    android:hint="@string/str_mobile"
+                    android:inputType="phone"
+                    android:text="@={model.signup.fields.mobile}"
+                    app:error="@{model.signup.mobileError}"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -83,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/str_first_name"
-                    android:inputType="textPassword" />
+                    android:inputType="textPersonName" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -101,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/str_last_name"
-                    android:inputType="textPassword" />
+                    android:inputType="textPersonName" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -120,7 +132,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/view_margin"
                 android:layout_marginBottom="@dimen/layout_margin"
-                android:text="@string/str_login"
+                android:text="@string/str_signup"
+                android:onClick="@{() -> model.onButtonClick()}"
                 app:layout_constraintEnd_toEndOf="@+id/til_password"
                 app:layout_constraintTop_toBottomOf="@id/sp_user_type"
                 app:layout_constraintBottom_toBottomOf="parent"/>

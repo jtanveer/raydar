@@ -1,6 +1,6 @@
-package com.jtanveer.raydar.login.model;
+package com.jtanveer.raydar.ui.signup.model;
 
-public class LoginStatus {
+public class SignupStatus {
 
     private boolean success;
     private Integer id;

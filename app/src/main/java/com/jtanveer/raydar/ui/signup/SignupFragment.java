@@ -1,4 +1,4 @@
-package com.jtanveer.raydar.login;
+package com.jtanveer.raydar.ui.signup;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -10,25 +10,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.jtanveer.raydar.R;
-import com.jtanveer.raydar.databinding.FragmentLoginBinding;
+import com.jtanveer.raydar.databinding.FragmentSignupBinding;
 
-public class LoginFragment extends Fragment {
+public class SignupFragment extends Fragment {
 
-    private FragmentLoginBinding binding;
+    private FragmentSignupBinding binding;
 
-    private LoginViewModel mViewModel;
+    private SignupViewModel mViewModel;
 
-    public static LoginFragment newInstance() {
-        return new LoginFragment();
+    public static SignupFragment newInstance() {
+        return new SignupFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup, container, false);
         return binding.getRoot();
     }
 
@@ -39,7 +38,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void setupViewModel(Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(SignupViewModel.class);
         if (savedInstanceState == null) {
             mViewModel.init();
         }
@@ -48,12 +47,12 @@ public class LoginFragment extends Fragment {
     }
 
     private void setupButtonClick() {
-        mViewModel.getLoginFields().observe(this, loginStatus -> {
-            if (loginStatus.isSuccess()) {
-                Snackbar.make(binding.btLogin, "Success", Snackbar.LENGTH_LONG).show();
+        mViewModel.getSignupStatus().observe(this, signupStatus -> {
+            if (signupStatus.isSuccess()) {
+                Snackbar.make(binding.btSignup, "Success", Snackbar.LENGTH_LONG).show();
             } else {
-                if (loginStatus.getMessage() != null) {
-                    Snackbar.make(binding.btLogin, loginStatus.getMessage(), Snackbar.LENGTH_LONG).show();
+                if (signupStatus.getMessage() != null) {
+                    Snackbar.make(binding.btSignup, signupStatus.getMessage(), Snackbar.LENGTH_LONG).show();
                 }
             }
         });

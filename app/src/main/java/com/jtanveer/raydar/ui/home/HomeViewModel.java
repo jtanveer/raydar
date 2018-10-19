@@ -1,4 +1,4 @@
-package com.jtanveer.raydar.home;
+package com.jtanveer.raydar.ui.home;
 
 import android.arch.lifecycle.ViewModel;
 

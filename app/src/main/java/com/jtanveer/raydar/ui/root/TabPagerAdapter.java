@@ -1,11 +1,11 @@
-package com.jtanveer.raydar.root;
+package com.jtanveer.raydar.ui.root;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.jtanveer.raydar.login.LoginFragment;
-import com.jtanveer.raydar.signup.SignupFragment;
+import com.jtanveer.raydar.ui.login.LoginFragment;
+import com.jtanveer.raydar.ui.signup.SignupFragment;
 
 public class TabPagerAdapter extends FragmentPagerAdapter {
 

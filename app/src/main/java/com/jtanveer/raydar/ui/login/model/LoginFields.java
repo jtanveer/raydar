@@ -1,6 +1,6 @@
-package com.jtanveer.raydar.signup.model;
+package com.jtanveer.raydar.ui.login.model;
 
-public class LoginErrorFields {
+public class LoginFields {
 
     private String email;
     private String password;

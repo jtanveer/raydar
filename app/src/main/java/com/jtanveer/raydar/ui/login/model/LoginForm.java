@@ -1,15 +1,12 @@
-package com.jtanveer.raydar.signup.model;
+package com.jtanveer.raydar.ui.login.model;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.text.TextUtils;
-import android.util.Patterns;
 
 import com.jtanveer.raydar.BR;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.jtanveer.raydar.validation.InputValidator;
 
 public class LoginForm extends BaseObservable {
 
@@ -17,13 +14,16 @@ public class LoginForm extends BaseObservable {
     private LoginErrorFields errors = new LoginErrorFields();
     private LoginStatus loginStatus = new LoginStatus();
     private MutableLiveData<LoginStatus> buttonClick = new MutableLiveData<>();
+    private InputValidator validator = new InputValidator();
 
     public boolean isEmpty() {
-        String email = fields.getEmail();
-        String password = fields.getPassword();
-        boolean emptyEmail = email == null || TextUtils.isEmpty(email);
-        boolean emptyPassword = password == null || TextUtils.isEmpty(password);
+        boolean emptyEmail = isEmptyField(fields.getEmail());
+        boolean emptyPassword = isEmptyField(fields.getPassword());
         return  emptyEmail || emptyPassword;
+    }
+
+    private boolean isEmptyField(String field) {
+        return field == null || TextUtils.isEmpty(field);
     }
 
     public boolean isValid(boolean setMessage) {
@@ -33,8 +33,7 @@ public class LoginForm extends BaseObservable {
     }
 
     public boolean isEmailValid(boolean setMessage) {
-        String email = fields.getEmail();
-        if (email != null && !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (validator.isValidEmail(fields.getEmail())) {
             errors.setEmail(null);
             notifyPropertyChanged(BR.emailError);
             return true;
@@ -45,17 +44,10 @@ public class LoginForm extends BaseObservable {
             }
             return false;
         }
-
     }
 
     public boolean isPasswordValid(boolean setMessage) {
-        String password = fields.getPassword();
-
-        final String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
-        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-        Matcher matcher = pattern.matcher(password);
-
-        if (password != null && !TextUtils.isEmpty(password) && matcher.matches()) {
+        if (validator.isValidPassword(fields.getPassword())) {
             errors.setPassword(null);
             notifyPropertyChanged(BR.passwordError);
             return true;

@@ -1,4 +1,4 @@
-package com.jtanveer.raydar.signup.model;
+package com.jtanveer.raydar.ui.login.model;
 
 public class LoginStatus {
 

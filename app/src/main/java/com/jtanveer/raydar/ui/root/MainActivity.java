@@ -1,4 +1,4 @@
-package com.jtanveer.raydar.root;
+package com.jtanveer.raydar.ui.root;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;

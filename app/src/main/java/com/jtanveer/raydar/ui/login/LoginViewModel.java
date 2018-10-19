@@ -1,11 +1,11 @@
-package com.jtanveer.raydar.login;
+package com.jtanveer.raydar.ui.login;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.VisibleForTesting;
 
-import com.jtanveer.raydar.login.model.LoginForm;
-import com.jtanveer.raydar.login.model.LoginStatus;
+import com.jtanveer.raydar.ui.login.model.LoginForm;
+import com.jtanveer.raydar.ui.login.model.LoginStatus;
 
 public class LoginViewModel extends ViewModel {
     private LoginForm login;
@@ -23,11 +23,7 @@ public class LoginViewModel extends ViewModel {
         login.onClick();
     }
 
-    public MutableLiveData<LoginStatus> getLoginFields() {
+    public MutableLiveData<LoginStatus> getLoginStatus() {
         return login.getLoginStatus();
-    }
-
-    public LoginForm getForm() {
-        return login;
     }
 }
