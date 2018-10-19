@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.jtanveer.raydar.R;
 import com.jtanveer.raydar.databinding.FragmentHomeBinding;
+import com.jtanveer.raydar.viewmodel.HomeViewModel;
 
 import dagger.android.support.AndroidSupportInjection;
 

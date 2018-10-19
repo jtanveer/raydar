@@ -1,4 +1,4 @@
-package com.jtanveer.raydar.ui.login.model;
+package com.jtanveer.raydar.form;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -8,11 +8,13 @@ import com.jtanveer.raydar.BR;
 import com.jtanveer.raydar.lifecycle.SingleLiveEvent;
 import com.jtanveer.raydar.validation.InputValidator;
 import com.jtanveer.raydar.validation.ValidationStatus;
+import com.jtanveer.raydar.validation.field.UserErrorFields;
+import com.jtanveer.raydar.validation.field.UserFields;
 
 public class LoginForm extends BaseObservable {
 
-    private LoginFields fields = new LoginFields();
-    private LoginErrorFields errors = new LoginErrorFields();
+    private UserFields fields = new UserFields();
+    private UserErrorFields errors = new UserErrorFields();
     private ValidationStatus validationStatus = new ValidationStatus();
     private SingleLiveEvent<ValidationStatus> validation = new SingleLiveEvent<>();
     private InputValidator validator = new InputValidator();
@@ -79,7 +81,7 @@ public class LoginForm extends BaseObservable {
         return validation;
     }
 
-    public LoginFields getFields() {
+    public UserFields getFields() {
         return fields;
     }
 

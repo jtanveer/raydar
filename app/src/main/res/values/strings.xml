@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Raydar</string>
     <string name="title_activity_main">Raydar</string>
+    <string name="title_activity_home">Home</string>
     <string name="tab_text_1">Login</string>
     <string name="tab_text_2">Signup</string>
     <string name="action_settings">Settings</string>
@@ -13,6 +14,7 @@
     <string name="str_last_name">Last Name</string>
     <string name="str_signup">Signup</string>
     <string name="str_user_type">User Type</string>
+    <string name="str_edit">Edit</string>
 
     <string-array name="user_types">
         <item></item>

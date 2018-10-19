@@ -1,4 +1,4 @@
-package com.jtanveer.raydar.ui.signup;
+package com.jtanveer.raydar.ui.root;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.jtanveer.raydar.R;
 import com.jtanveer.raydar.databinding.FragmentSignupBinding;
 import com.jtanveer.raydar.ui.home.HomeActivity;
+import com.jtanveer.raydar.viewmodel.SignupViewModel;
 
 import javax.inject.Inject;
 

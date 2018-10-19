@@ -4,8 +4,8 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.jtanveer.raydar.di.key.ViewModelKey;
-import com.jtanveer.raydar.ui.login.LoginViewModel;
-import com.jtanveer.raydar.ui.signup.SignupViewModel;
+import com.jtanveer.raydar.viewmodel.LoginViewModel;
+import com.jtanveer.raydar.viewmodel.SignupViewModel;
 import com.jtanveer.raydar.viewmodel.FactoryViewModel;
 
 import dagger.Binds;

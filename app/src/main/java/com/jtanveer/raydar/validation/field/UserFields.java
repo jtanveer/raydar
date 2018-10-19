@@ -1,6 +1,6 @@
-package com.jtanveer.raydar.ui.signup.model;
+package com.jtanveer.raydar.validation.field;
 
-public class SignupFields {
+public class UserFields {
 
     private String email;
     private String password;

@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class InputValidator {
 
     private static final Pattern EMAIL = Patterns.EMAIL_ADDRESS;
-    private static final Pattern PASSWORD = Pattern.compile("^(?=.*[a-z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
+    private static final Pattern PASSWORD = Pattern.compile("^(?=.*[a-z0-9])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
     private static final Pattern MOBILE = Pattern.compile("^(\\+?6?01)[0-46-9]-*[0-9]{4,} *[0-9]{3,4}$");
 
     public boolean isValidEmail(String email) {

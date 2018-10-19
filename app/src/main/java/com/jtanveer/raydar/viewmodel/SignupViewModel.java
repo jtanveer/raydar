@@ -1,4 +1,4 @@
-package com.jtanveer.raydar.ui.signup;
+package com.jtanveer.raydar.viewmodel;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import com.jtanveer.raydar.lifecycle.SingleLiveEvent;
 import com.jtanveer.raydar.repository.UserRepository;
-import com.jtanveer.raydar.ui.signup.model.SignupFields;
-import com.jtanveer.raydar.ui.signup.model.SignupForm;
+import com.jtanveer.raydar.form.SignupForm;
 import com.jtanveer.raydar.validation.ValidationStatus;
+import com.jtanveer.raydar.validation.field.UserFields;
 
 import javax.inject.Inject;
 
@@ -50,7 +50,7 @@ public class SignupViewModel extends ViewModel {
     }
 
     public LiveData<Long> getSignupStatus() {
-        SignupFields fields = signup.getFields();
+        UserFields fields = signup.getFields();
         return userRepository.signup(fields.getEmail(), fields.getPassword(), fields.getMobile(),
                 fields.getFirstName(), fields.getLastName(), fields.getUserType());
     }

@@ -1,4 +1,4 @@
-package com.jtanveer.raydar.ui.signup.model;
+package com.jtanveer.raydar.form;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -8,11 +8,13 @@ import com.jtanveer.raydar.BR;
 import com.jtanveer.raydar.lifecycle.SingleLiveEvent;
 import com.jtanveer.raydar.validation.InputValidator;
 import com.jtanveer.raydar.validation.ValidationStatus;
+import com.jtanveer.raydar.validation.field.UserErrorFields;
+import com.jtanveer.raydar.validation.field.UserFields;
 
 public class SignupForm extends BaseObservable {
 
-    private SignupFields fields = new SignupFields();
-    private SignupErrorFields errors = new SignupErrorFields();
+    private UserFields fields = new UserFields();
+    private UserErrorFields errors = new UserErrorFields();
     private ValidationStatus validationStatus = new ValidationStatus();
     private SingleLiveEvent<ValidationStatus> validation = new SingleLiveEvent<>();
     private InputValidator validator = new InputValidator();
@@ -107,15 +109,11 @@ public class SignupForm extends BaseObservable {
         validation.setValue(validationStatus);
     }
 
-    public void onUserTypeSelected() {
-
-    }
-
     public SingleLiveEvent<ValidationStatus> getValidationStatus() {
         return validation;
     }
 
-    public SignupFields getFields() {
+    public UserFields getFields() {
         return fields;
     }
 

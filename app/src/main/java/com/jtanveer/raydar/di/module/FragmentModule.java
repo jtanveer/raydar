@@ -1,8 +1,8 @@
 package com.jtanveer.raydar.di.module;
 
 import com.jtanveer.raydar.ui.home.HomeFragment;
-import com.jtanveer.raydar.ui.login.LoginFragment;
-import com.jtanveer.raydar.ui.signup.SignupFragment;
+import com.jtanveer.raydar.ui.root.LoginFragment;
+import com.jtanveer.raydar.ui.root.SignupFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

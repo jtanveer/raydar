@@ -1,6 +1,6 @@
-package com.jtanveer.raydar.ui.signup.model;
+package com.jtanveer.raydar.validation.field;
 
-public class SignupErrorFields {
+public class UserErrorFields {
 
     private String email;
     private String password;

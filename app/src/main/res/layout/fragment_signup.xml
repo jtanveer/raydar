@@ -7,14 +7,13 @@
 
         <variable
             name="model"
-            type="com.jtanveer.raydar.ui.signup.SignupViewModel" />
+            type="com.jtanveer.raydar.viewmodel.SignupViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ui.signup.SignupFragment">
+        tools:context=".ui.root.MainActivity">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
