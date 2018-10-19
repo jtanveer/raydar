@@ -1,11 +1,11 @@
 package com.jtanveer.raydar.ui.login.model;
 
-import android.arch.lifecycle.MutableLiveData;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.text.TextUtils;
 
 import com.jtanveer.raydar.BR;
+import com.jtanveer.raydar.lifecycle.SingleLiveEvent;
 import com.jtanveer.raydar.validation.InputValidator;
 import com.jtanveer.raydar.validation.ValidationStatus;
 
@@ -14,7 +14,7 @@ public class LoginForm extends BaseObservable {
     private LoginFields fields = new LoginFields();
     private LoginErrorFields errors = new LoginErrorFields();
     private ValidationStatus validationStatus = new ValidationStatus();
-    private MutableLiveData<ValidationStatus> validation = new MutableLiveData<>();
+    private SingleLiveEvent<ValidationStatus> validation = new SingleLiveEvent<>();
     private InputValidator validator = new InputValidator();
 
     public boolean isEmpty() {
@@ -75,7 +75,7 @@ public class LoginForm extends BaseObservable {
         validation.setValue(validationStatus);
     }
 
-    public MutableLiveData<ValidationStatus> getValidationStatus() {
+    public SingleLiveEvent<ValidationStatus> getValidationStatus() {
         return validation;
     }
 

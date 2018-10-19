@@ -1,6 +1,6 @@
 package com.jtanveer.raydar.ui.signup;
 
-import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.BindingAdapter;
 import android.support.annotation.VisibleForTesting;
@@ -8,13 +8,19 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.jtanveer.raydar.lifecycle.SingleLiveEvent;
+import com.jtanveer.raydar.repository.UserRepository;
+import com.jtanveer.raydar.ui.signup.model.SignupFields;
 import com.jtanveer.raydar.ui.signup.model.SignupForm;
-import com.jtanveer.raydar.ui.signup.model.SignupStatus;
+import com.jtanveer.raydar.validation.ValidationStatus;
 
 import javax.inject.Inject;
 
 public class SignupViewModel extends ViewModel {
     private SignupForm signup;
+
+    @Inject
+    UserRepository userRepository;
 
     @Inject
     public SignupViewModel() {
@@ -39,8 +45,14 @@ public class SignupViewModel extends ViewModel {
         }
     }
 
-    public MutableLiveData<SignupStatus> getSignupStatus() {
-        return signup.getSignupStatus();
+    public SingleLiveEvent<ValidationStatus> getValidationStatus() {
+        return signup.getValidationStatus();
+    }
+
+    public LiveData<Long> getSignupStatus() {
+        SignupFields fields = signup.getFields();
+        return userRepository.signup(fields.getEmail(), fields.getPassword(), fields.getMobile(),
+                fields.getFirstName(), fields.getLastName(), fields.getUserType());
     }
 
     @BindingAdapter("error")

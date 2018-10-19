@@ -74,11 +74,12 @@ public class LoginFragment extends Fragment {
     }
 
     private void performLogin() {
-        mViewModel.getLoginStatus().observe(this, user -> {
-            if (user != null) {
+        mViewModel.getLoginStatus().observe(this, id -> {
+            if (id > 0) {
                 Intent intent = new Intent(getContext(), HomeActivity.class);
-                intent.putExtra("email", user.getEmail());
+                intent.putExtra("id", id);
                 startActivity(intent);
+                getActivity().finish();
             } else {
                 Snackbar.make(binding.btLogin, "Wrong email or password", Snackbar.LENGTH_LONG).show();
             }

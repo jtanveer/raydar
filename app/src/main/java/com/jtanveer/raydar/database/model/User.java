@@ -11,7 +11,7 @@ public class User {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    private Integer id;
+    private Long id;
     private String email;
     private String password;
     private String mobile;
@@ -22,11 +22,11 @@ public class User {
     private String type;
 
     @NonNull
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(@NonNull Integer id) {
+    public void setId(@NonNull Long id) {
         this.id = id;
     }
 

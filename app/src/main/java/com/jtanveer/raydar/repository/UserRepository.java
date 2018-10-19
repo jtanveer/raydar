@@ -21,13 +21,26 @@ public class UserRepository {
         this.executor = executor;
     }
 
-    public LiveData<User> getUser(String email) {
+    public LiveData<User> getUser(Long id) {
         MutableLiveData<User> data = new MutableLiveData<>();
-        executor.execute(() -> data.postValue(userDao.get(email)));
+        executor.execute(() -> data.postValue(userDao.get(id)));
         return data;
     }
 
-    public void saveUser(String email, String password, String mobile, String firstName, String lastName, String type) {
+    public LiveData<Long> login(String email, String password) {
+        MutableLiveData<Long> data = new MutableLiveData<>();
+        executor.execute(() -> {
+            User user = userDao.get(email, password);
+            if (user != null) {
+                data.postValue(user.getId());
+            } else {
+                data.postValue(-1L);
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Long> signup(String email, String password, String mobile, String firstName, String lastName, String type) {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
@@ -35,6 +48,14 @@ public class UserRepository {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setType(type);
-        executor.execute(() -> userDao.save(user));
+        MutableLiveData<Long> data = new MutableLiveData<>();
+        executor.execute(() -> {
+            if (userDao.get(email) == null) {
+                data.postValue(userDao.save(user));
+            } else {
+                data.postValue(-1L);
+            }
+        });
+        return data;
     }
 }

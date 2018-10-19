@@ -1,23 +1,20 @@
 package com.jtanveer.raydar.ui.signup.model;
 
-import android.arch.lifecycle.MutableLiveData;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.text.TextUtils;
-import android.util.Patterns;
 
 import com.jtanveer.raydar.BR;
+import com.jtanveer.raydar.lifecycle.SingleLiveEvent;
 import com.jtanveer.raydar.validation.InputValidator;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.jtanveer.raydar.validation.ValidationStatus;
 
 public class SignupForm extends BaseObservable {
 
     private SignupFields fields = new SignupFields();
     private SignupErrorFields errors = new SignupErrorFields();
-    private SignupStatus signupStatus = new SignupStatus();
-    private MutableLiveData<SignupStatus> buttonClick = new MutableLiveData<>();
+    private ValidationStatus validationStatus = new ValidationStatus();
+    private SingleLiveEvent<ValidationStatus> validation = new SingleLiveEvent<>();
     private InputValidator validator = new InputValidator();
 
     public boolean isEmpty() {
@@ -98,27 +95,24 @@ public class SignupForm extends BaseObservable {
 
     public void onClick() {
         if (isEmpty()) {
-            signupStatus.setSuccess(false);
-            signupStatus.setId(0);
-            signupStatus.setMessage("Please complete the form");
+            validationStatus.setSuccess(false);
+            validationStatus.setMessage("Please complete the form");
         } else if (!isValid(true)) {
-            signupStatus.setSuccess(false);
-            signupStatus.setId(0);
-            signupStatus.setMessage(null);
+            validationStatus.setSuccess(false);
+            validationStatus.setMessage(null);
         } else {
-            signupStatus.setSuccess(true);
-            signupStatus.setId(100);
-            signupStatus.setMessage(null);
+            validationStatus.setSuccess(true);
+            validationStatus.setMessage(null);
         }
-        buttonClick.setValue(signupStatus);
+        validation.setValue(validationStatus);
     }
 
     public void onUserTypeSelected() {
 
     }
 
-    public MutableLiveData<SignupStatus> getSignupStatus() {
-        return buttonClick;
+    public SingleLiveEvent<ValidationStatus> getValidationStatus() {
+        return validation;
     }
 
     public SignupFields getFields() {

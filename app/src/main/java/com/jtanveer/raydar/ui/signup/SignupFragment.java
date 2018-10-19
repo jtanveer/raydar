@@ -2,6 +2,7 @@ package com.jtanveer.raydar.ui.signup;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.jtanveer.raydar.R;
 import com.jtanveer.raydar.databinding.FragmentSignupBinding;
+import com.jtanveer.raydar.ui.home.HomeActivity;
 
 import javax.inject.Inject;
 
@@ -60,13 +62,26 @@ public class SignupFragment extends Fragment {
     }
 
     private void setupButtonClick() {
-        mViewModel.getSignupStatus().observe(this, signupStatus -> {
-            if (signupStatus.isSuccess()) {
-                Snackbar.make(binding.btSignup, "Success", Snackbar.LENGTH_LONG).show();
+        mViewModel.getValidationStatus().observe(this, validationStatus -> {
+            if (validationStatus.isSuccess()) {
+                performSignup();
             } else {
-                if (signupStatus.getMessage() != null) {
-                    Snackbar.make(binding.btSignup, signupStatus.getMessage(), Snackbar.LENGTH_LONG).show();
+                if (validationStatus.getMessage() != null) {
+                    Snackbar.make(binding.btSignup, validationStatus.getMessage(), Snackbar.LENGTH_LONG).show();
                 }
+            }
+        });
+    }
+
+    private void performSignup() {
+        mViewModel.getSignupStatus().observe(this, id -> {
+            if (id > 0) {
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+                getActivity().finish();
+            } else {
+                Snackbar.make(binding.btSignup, "User already exists", Snackbar.LENGTH_LONG).show();
             }
         });
     }
