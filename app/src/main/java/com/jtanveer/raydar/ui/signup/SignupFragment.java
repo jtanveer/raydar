@@ -1,5 +1,6 @@
 package com.jtanveer.raydar.ui.signup;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -14,11 +15,18 @@ import android.view.ViewGroup;
 import com.jtanveer.raydar.R;
 import com.jtanveer.raydar.databinding.FragmentSignupBinding;
 
+import javax.inject.Inject;
+
+import dagger.android.support.AndroidSupportInjection;
+
 public class SignupFragment extends Fragment {
 
     private FragmentSignupBinding binding;
 
     private SignupViewModel mViewModel;
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     public static SignupFragment newInstance() {
         return new SignupFragment();
@@ -34,11 +42,16 @@ public class SignupFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        configureDagger();
         setupViewModel(savedInstanceState);
     }
 
+    private void configureDagger(){
+        AndroidSupportInjection.inject(this);
+    }
+
     private void setupViewModel(Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(SignupViewModel.class);
+        mViewModel = ViewModelProviders.of(this, viewModelFactory).get(SignupViewModel.class);
         if (savedInstanceState == null) {
             mViewModel.init();
         }

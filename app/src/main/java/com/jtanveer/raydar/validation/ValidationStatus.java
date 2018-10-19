@@ -1,9 +1,8 @@
-package com.jtanveer.raydar.ui.login.model;
+package com.jtanveer.raydar.validation;
 
-public class LoginStatus {
+public class ValidationStatus {
 
     private boolean success;
-    private Integer id;
     private String message;
 
     public boolean isSuccess() {
@@ -12,14 +11,6 @@ public class LoginStatus {
 
     public void setSuccess(boolean success) {
         this.success = success;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getMessage() {

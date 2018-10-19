@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.jtanveer.raydar.R;
 import com.jtanveer.raydar.databinding.FragmentHomeBinding;
 
+import dagger.android.support.AndroidSupportInjection;
+
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
@@ -36,6 +38,11 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         // TODO: Use the ViewModel
+        configureDagger();
+    }
+
+    private void configureDagger(){
+        AndroidSupportInjection.inject(this);
     }
 
 }

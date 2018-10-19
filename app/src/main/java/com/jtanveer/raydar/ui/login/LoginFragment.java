@@ -1,6 +1,8 @@
 package com.jtanveer.raydar.ui.login;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,12 +15,20 @@ import android.view.ViewGroup;
 
 import com.jtanveer.raydar.R;
 import com.jtanveer.raydar.databinding.FragmentLoginBinding;
+import com.jtanveer.raydar.ui.home.HomeActivity;
+
+import javax.inject.Inject;
+
+import dagger.android.support.AndroidSupportInjection;
 
 public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
 
     private LoginViewModel mViewModel;
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     public static LoginFragment newInstance() {
         return new LoginFragment();
@@ -34,11 +44,16 @@ public class LoginFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        configureDagger();
         setupViewModel(savedInstanceState);
     }
 
+    private void configureDagger(){
+        AndroidSupportInjection.inject(this);
+    }
+
     private void setupViewModel(Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        mViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel.class);
         if (savedInstanceState == null) {
             mViewModel.init();
         }
@@ -47,13 +62,25 @@ public class LoginFragment extends Fragment {
     }
 
     private void setupButtonClick() {
-        mViewModel.getLoginStatus().observe(this, loginStatus -> {
-            if (loginStatus.isSuccess()) {
-                Snackbar.make(binding.btLogin, "Success", Snackbar.LENGTH_LONG).show();
+        mViewModel.getValidationStatus().observe(this, validationStatus -> {
+            if (validationStatus.isSuccess()) {
+                performLogin();
             } else {
-                if (loginStatus.getMessage() != null) {
-                    Snackbar.make(binding.btLogin, loginStatus.getMessage(), Snackbar.LENGTH_LONG).show();
+                if (validationStatus.getMessage() != null) {
+                    Snackbar.make(binding.btLogin, validationStatus.getMessage(), Snackbar.LENGTH_LONG).show();
                 }
+            }
+        });
+    }
+
+    private void performLogin() {
+        mViewModel.getLoginStatus().observe(this, user -> {
+            if (user != null) {
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                intent.putExtra("email", user.getEmail());
+                startActivity(intent);
+            } else {
+                Snackbar.make(binding.btLogin, "Wrong email or password", Snackbar.LENGTH_LONG).show();
             }
         });
     }

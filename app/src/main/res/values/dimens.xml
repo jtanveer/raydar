@@ -6,4 +6,7 @@
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="layout_margin">32dp</dimen>
     <dimen name="view_margin">24dp</dimen>
+    <dimen name="sm_padding">4dp</dimen>
+    <dimen name="neighbor_margin">4dp</dimen>
+    <dimen name="sm_text">12sp</dimen>
 </resources>

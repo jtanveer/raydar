@@ -12,4 +12,13 @@
     <string name="str_first_name">First Name</string>
     <string name="str_last_name">Last Name</string>
     <string name="str_signup">Signup</string>
+    <string name="str_user_type">User Type</string>
+
+    <string-array name="user_types">
+        <item></item>
+        <item>Broker</item>
+        <item>Agent</item>
+        <item>Dealer</item>
+        <item>Private</item>
+    </string-array>
 </resources>

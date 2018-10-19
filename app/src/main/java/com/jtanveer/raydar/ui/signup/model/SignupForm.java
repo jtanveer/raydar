@@ -35,7 +35,8 @@ public class SignupForm extends BaseObservable {
         boolean emailValid = isEmailValid(setMessage);
         boolean passwordValid = isPasswordValid(setMessage);
         boolean mobileValid = isMobileValid(setMessage);
-        return emailValid && passwordValid && mobileValid;
+        boolean userTypeValid = isUserTypeValid(setMessage);
+        return emailValid && passwordValid && mobileValid && userTypeValid;
     }
 
     public boolean isEmailValid(boolean setMessage) {
@@ -80,6 +81,21 @@ public class SignupForm extends BaseObservable {
         }
     }
 
+    public boolean isUserTypeValid(boolean setMessage) {
+        String userType = fields.getUserType();
+        if (userType != null && !TextUtils.isEmpty(userType)) {
+            errors.setUserType(null);
+            notifyPropertyChanged(BR.userTypeError);
+            return true;
+        } else {
+            if (setMessage) {
+                errors.setUserType("Please select user type");
+                notifyPropertyChanged(BR.userTypeError);
+            }
+            return false;
+        }
+    }
+
     public void onClick() {
         if (isEmpty()) {
             signupStatus.setSuccess(false);
@@ -95,6 +111,10 @@ public class SignupForm extends BaseObservable {
             signupStatus.setMessage(null);
         }
         buttonClick.setValue(signupStatus);
+    }
+
+    public void onUserTypeSelected() {
+
     }
 
     public MutableLiveData<SignupStatus> getSignupStatus() {

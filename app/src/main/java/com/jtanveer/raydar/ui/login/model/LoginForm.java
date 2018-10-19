@@ -7,13 +7,14 @@ import android.text.TextUtils;
 
 import com.jtanveer.raydar.BR;
 import com.jtanveer.raydar.validation.InputValidator;
+import com.jtanveer.raydar.validation.ValidationStatus;
 
 public class LoginForm extends BaseObservable {
 
     private LoginFields fields = new LoginFields();
     private LoginErrorFields errors = new LoginErrorFields();
-    private LoginStatus loginStatus = new LoginStatus();
-    private MutableLiveData<LoginStatus> buttonClick = new MutableLiveData<>();
+    private ValidationStatus validationStatus = new ValidationStatus();
+    private MutableLiveData<ValidationStatus> validation = new MutableLiveData<>();
     private InputValidator validator = new InputValidator();
 
     public boolean isEmpty() {
@@ -62,23 +63,20 @@ public class LoginForm extends BaseObservable {
 
     public void onClick() {
         if (isEmpty()) {
-            loginStatus.setSuccess(false);
-            loginStatus.setId(0);
-            loginStatus.setMessage("Please complete the form");
+            validationStatus.setSuccess(false);
+            validationStatus.setMessage("Please complete the form");
         } else if (!isValid(true)) {
-            loginStatus.setSuccess(false);
-            loginStatus.setId(0);
-            loginStatus.setMessage(null);
+            validationStatus.setSuccess(false);
+            validationStatus.setMessage(null);
         } else {
-            loginStatus.setSuccess(true);
-            loginStatus.setId(100);
-            loginStatus.setMessage(null);
+            validationStatus.setSuccess(true);
+            validationStatus.setMessage(null);
         }
-        buttonClick.setValue(loginStatus);
+        validation.setValue(validationStatus);
     }
 
-    public MutableLiveData<LoginStatus> getLoginStatus() {
-        return buttonClick;
+    public MutableLiveData<ValidationStatus> getValidationStatus() {
+        return validation;
     }
 
     public LoginFields getFields() {
