@@ -82,7 +82,7 @@ public class SignupFragment extends Fragment {
                 startActivity(intent);
                 getActivity().finish();
             } else {
-                Snackbar.make(binding.btSignup, "User already exists", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(binding.btSignup, "Email already exists", Snackbar.LENGTH_LONG).show();
             }
         });
     }

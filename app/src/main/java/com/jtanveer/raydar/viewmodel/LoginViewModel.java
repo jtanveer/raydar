@@ -13,7 +13,9 @@ import com.jtanveer.raydar.validation.field.UserFields;
 import javax.inject.Inject;
 
 public class LoginViewModel extends ViewModel {
+
     private LoginForm login;
+
     @Inject
     UserRepository userRepository;
 

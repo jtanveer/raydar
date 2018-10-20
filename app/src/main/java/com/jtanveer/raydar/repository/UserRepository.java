@@ -58,4 +58,10 @@ public class UserRepository {
         });
         return data;
     }
+
+    public LiveData<Boolean> updateMobile(Long id, String mobile) {
+        MutableLiveData<Boolean> data = new MutableLiveData<>();
+        executor.execute(() -> data.postValue(userDao.update(id, mobile) > 0));
+        return data;
+    }
 }

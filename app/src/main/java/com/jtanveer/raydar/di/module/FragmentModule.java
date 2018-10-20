@@ -1,5 +1,6 @@
 package com.jtanveer.raydar.di.module;
 
+import com.jtanveer.raydar.ui.home.EditMobileDialogFragment;
 import com.jtanveer.raydar.ui.home.HomeFragment;
 import com.jtanveer.raydar.ui.root.LoginFragment;
 import com.jtanveer.raydar.ui.root.SignupFragment;
@@ -17,4 +18,7 @@ public abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract HomeFragment contributeHomeFragment();
+
+    @ContributesAndroidInjector
+    abstract EditMobileDialogFragment contributeEditMobileFragment();
 }

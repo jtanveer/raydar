@@ -14,6 +14,9 @@ public interface UserDao {
     @Insert(onConflict = ABORT)
     long save(User user);
 
+    @Query("UPDATE users SET mobile = :mobile WHERE id = :id")
+    long update(long id, String mobile);
+
     @Query("SELECT * FROM users WHERE id = :id LIMIT 1")
     User get(long id);
 

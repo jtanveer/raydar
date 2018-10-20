@@ -26,7 +26,7 @@ public class HomeActivity extends AppCompatActivity implements HasSupportFragmen
         ActivityHomeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, HomeFragment.newInstance())
+                    .replace(R.id.container, HomeFragment.newInstance(getIntent().getLongExtra("id", -1L)))
                     .commitNow();
         }
 

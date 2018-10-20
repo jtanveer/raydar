@@ -17,6 +17,7 @@ import com.jtanveer.raydar.validation.field.UserFields;
 import javax.inject.Inject;
 
 public class SignupViewModel extends ViewModel {
+
     private SignupForm signup;
 
     @Inject
