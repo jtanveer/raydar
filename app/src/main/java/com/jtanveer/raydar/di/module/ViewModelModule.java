@@ -8,6 +8,7 @@ import com.jtanveer.raydar.viewmodel.HomeViewModel;
 import com.jtanveer.raydar.viewmodel.LoginViewModel;
 import com.jtanveer.raydar.viewmodel.SignupViewModel;
 import com.jtanveer.raydar.viewmodel.FactoryViewModel;
+import com.jtanveer.raydar.viewmodel.SplashViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -15,6 +16,11 @@ import dagger.multibindings.IntoMap;
 
 @Module
 public abstract class ViewModelModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashViewModel.class)
+    abstract ViewModel bindSplashViewModel(SplashViewModel viewModel);
+
 
     @Binds
     @IntoMap

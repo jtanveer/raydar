@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.jtanveer.raydar.BR;
 import com.jtanveer.raydar.R;
 import com.jtanveer.raydar.databinding.FragmentHomeBinding;
-import com.jtanveer.raydar.ui.root.MainActivity;
+import com.jtanveer.raydar.ui.SplashActivity;
 import com.jtanveer.raydar.viewmodel.HomeViewModel;
 
 import javax.inject.Inject;
@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment {
             if (dialog != null) {
                 dialog.dismiss();
             }
-            Intent intent = new Intent(getActivity(), MainActivity.class);
+            Intent intent = new Intent(getActivity(), SplashActivity.class);
             startActivity(intent);
             getActivity().finish();
         });

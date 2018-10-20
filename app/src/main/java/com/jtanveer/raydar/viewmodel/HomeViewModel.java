@@ -68,11 +68,11 @@ public class HomeViewModel extends ViewModel {
         return home.getTypeButtonClickStatus();
     }
 
-    public LiveData<Boolean> getMobileUpdateStatus(Long id, String mobile) {
-        return userRepository.updateMobile(id, mobile);
+    public SingleLiveEvent<Boolean> getLogoutStatus() {
+        return home.getLogoutButtonClickStatus();
     }
 
-    public LiveData<Boolean> getLogoutStatus() {
-        return home.getLogoutButtonClickStatus();
+    public LiveData<Boolean> getMobileUpdateStatus(Long id, String mobile) {
+        return userRepository.updateMobile(id, mobile);
     }
 }
