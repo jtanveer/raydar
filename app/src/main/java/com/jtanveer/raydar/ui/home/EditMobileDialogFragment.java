@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +35,7 @@ public class EditMobileDialogFragment extends DialogFragment {
         String mobile = getArguments().getString("mobile", "");
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         alertDialogBuilder.setTitle("Edit Mobile Number");
-        View layout = getLayoutInflater().inflate(R.layout.dialog_mobile_input, null, false);
+        View layout = LayoutInflater.from(getContext()).inflate(R.layout.dialog_mobile_input, null, false);
         EditText etMobile = layout.findViewById(R.id.et_mobile);
         etMobile.setInputType(InputType.TYPE_CLASS_PHONE);
         etMobile.setText(mobile);

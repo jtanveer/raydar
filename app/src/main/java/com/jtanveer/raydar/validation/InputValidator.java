@@ -1,13 +1,19 @@
 package com.jtanveer.raydar.validation;
 
 import android.text.TextUtils;
-import android.util.Patterns;
 
 import java.util.regex.Pattern;
 
 public class InputValidator {
 
-    private static final Pattern EMAIL = Patterns.EMAIL_ADDRESS;
+    private static final Pattern EMAIL = Pattern.compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+            "\\@" +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+            "(" +
+            "\\." +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+            ")+"
+    );
     private static final Pattern PASSWORD = Pattern.compile("^(?=.*[a-z0-9])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
     private static final Pattern MOBILE = Pattern.compile("^(\\+?6?01)[0-46-9]-*[0-9]{4,} *[0-9]{3,4}$");
 
