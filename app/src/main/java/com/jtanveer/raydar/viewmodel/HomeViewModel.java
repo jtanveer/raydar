@@ -8,6 +8,8 @@ import com.jtanveer.raydar.form.HomeForm;
 import com.jtanveer.raydar.lifecycle.SingleLiveEvent;
 import com.jtanveer.raydar.repository.UserRepository;
 
+import java.util.concurrent.ScheduledExecutorService;
+
 import javax.inject.Inject;
 
 public class HomeViewModel extends ViewModel {
@@ -17,6 +19,9 @@ public class HomeViewModel extends ViewModel {
 
     @Inject
     UserRepository userRepository;
+
+    @Inject
+    ScheduledExecutorService executor;
 
     @Inject
     public HomeViewModel() {
@@ -47,19 +52,27 @@ public class HomeViewModel extends ViewModel {
         }
     }
 
+    public void onLogoutButtonClick() {
+        home.onLogoutButtonClick(executor);
+    }
+
     public LiveData<User> getUser() {
         return user;
     }
 
-    public SingleLiveEvent<String> getEditButtonClick() {
+    public SingleLiveEvent<String> getEditButtonClickStatus() {
         return home.getEditButtonClickStatus();
     }
 
-    public SingleLiveEvent<String> getUserTypeClick() {
+    public SingleLiveEvent<String> getUserTypeClickStatus() {
         return home.getTypeButtonClickStatus();
     }
 
     public LiveData<Boolean> getMobileUpdateStatus(Long id, String mobile) {
         return userRepository.updateMobile(id, mobile);
+    }
+
+    public LiveData<Boolean> getLogoutStatus() {
+        return home.getLogoutButtonClickStatus();
     }
 }

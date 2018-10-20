@@ -9,6 +9,7 @@ import com.jtanveer.raydar.repository.UserRepository;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import javax.inject.Singleton;
 
@@ -36,6 +37,10 @@ public class AppModule {
 
     // --- REPOSITORY INJECTION ---
 
+    @Provides
+    ScheduledExecutorService provideScheduledExecutor() {
+        return Executors.newSingleThreadScheduledExecutor();
+    }
 
     @Provides
     Executor provideExecutor() {
